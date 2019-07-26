@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListMusicActivity">
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/list_music_LinearLayout1">
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:ems="10"
+            android:id="@+id/list_music_EditText_text"
+            android:layout_weight="3.0"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:lines="1"
+            android:hint="@string/list_music_hint"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/list_music_button_song"
+            android:id="@+id/list_music_Button_search_songs"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_weight="1.0"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/list_music_button_playlist"
+            android:id="@+id/list_music_Button_search_playlist"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_weight="1.0"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_above="@id/list_music_LinearLayout1"
+        android:id="@+id/list_music_ListView"
+        android:dividerHeight="0dp"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

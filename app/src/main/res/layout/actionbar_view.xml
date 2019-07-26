@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal">
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="Selected:"
+		android:textColor="#FFFFFF"
+		android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="Text"
+		android:id="@+id/selected_num"
+		android:textColor="#FEFEFE"
+		android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+</LinearLayout>
+
