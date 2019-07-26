@@ -80,9 +80,12 @@ public class ListMusicActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if (extras != null)
                 int_playlist_id = extras.getString("playlist_id");
+            if (int_playlist_id == null)
+                int_playlist_id = "0";
         } catch (NullPointerException e) {
             Logger.getLogger("NeteaseMusic").info("No playlist_id put!");
         }
+        Logger.getLogger("NeteaseMusic").info("int_playlist_id:" + int_playlist_id);
 
 //        ActionBar bar = getSupportActionBar();
 //        bar.setTitle("网易云音乐下载器");
