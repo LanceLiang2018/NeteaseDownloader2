@@ -9,11 +9,14 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.FileCallback;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.*;
 import io.reactivex.disposables.*;
+
+import java.io.File;
 import java.util.List;
 //import java.util.Observer;
 
@@ -160,6 +163,7 @@ class NetEaseAPI {
 
     static public void download(final Activity context, long id, final String filename) {
         final long gid = id;
+        final String gfilename = filename;
         StringCallback callback = new StringCallback() {
             @Override
             public void onError(Response<String> response) {
@@ -182,15 +186,22 @@ class NetEaseAPI {
                                 public void onSubscribe(Disposable d) {}
                                 @Override
                                 public void onNext(Boolean aBoolean) {
-                                    DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                                    Uri uri = Uri.parse(NetEaseAPI.form_download_url(gid));
-                                    DownloadManager.Request request = new DownloadManager.Request(uri);
-                                    request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-                                    request.setDestinationInExternalPublicDir("Music/", filename);
-                                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                                    downloadManager.enqueue(request);
+//                                    DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+//                                    Uri uri = Uri.parse(NetEaseAPI.form_download_url(gid));
+//                                    DownloadManager.Request request = new DownloadManager.Request(uri);
+//                                    request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+//                                    request.setDestinationInExternalPublicDir("Music/", filename);
+//                                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+//                                    downloadManager.enqueue(request);
+                                    FileCallback fileCallback = new FileCallback("/sdcard/Music/", gfilename) {
+                                        @Override
+                                        public void onSuccess(Response<File> response) {
+                                            Toast.makeText(context, gfilename + "下载完成", Toast.LENGTH_LONG).show();
+                                        }
+                                    };
 
-//                                    OkGo.<>
+                                    OkGo.<File>get(form_download_url(gid))
+                                            .execute(fileCallback);
                                 }});
                     return;
                 }
